@@ -1,1 +1,0 @@
-prolog -f dcg.prolog -g "test([ceo, of, company]),halt"

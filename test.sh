@@ -1,0 +1,1 @@
+clear ; coffee --compile prolog.coffee ; coffee --compile test/ ; mocha --ui bdd --reporter spec
