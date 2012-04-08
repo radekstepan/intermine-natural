@@ -15,21 +15,18 @@ attribute_of(name, employee).
 attribute_of(age, ceo).
 attribute_of(salary, ceo).
 
-% grammar of relations
-reference('ceo', ceo).
-collection('departments', department).
-collection('employees', employee).
-attribute('name', name).
-attribute('age', age).
-attribute('salary', salary).
-
 % answer format, the `path`
-answer([C, A], C, A).
+answer([C, A, X], C, A, X).
 
 % resolve attributes, references & collections
-has(Attr, C) :- attribute_of(Attr, C).
-has(Ref, C) :- reference_of(Ref, C).
-has(Coll, C) :- collection_of(Coll, C).
+has(Attr, C, _X) :- attribute_of(Attr, C).
+has(Ref, C, _X) :- reference_of(Ref, C).
+has(Coll, C, _X) :- collection_of(Coll, C).
+% resolve through (X) the tree for references & collections
+has(Ref, C, X) :- reference_of(X, C), reference_of(Ref, X).
+has(Ref, C, X) :- reference_of(X, C), collection_of(Ref, X).
+has(Coll, C, X) :- collection_of(X, C), reference_of(Coll, X).
+has(Coll, C, X) :- collection_of(X, C), collection_of(Coll, X).
 
 % :::::::: language rules ::::::::
 
@@ -39,13 +36,15 @@ query([A, 'of', Db], Answer) :-
 
 % age of ceo
 query([A, 'of', C], Answer) :-
-	has(A, C), answer(Answer, C, A).
+	has(A, C, X), answer(Answer, C, A, X).
 
 % name of department of company
-query([A2, 'of', A1, 'of', C], Answer) :-
-	query([A1, 'of', C], Answer1),
-	query([A2, 'of', A1], Answer2),
-	answer(Answer, Answer1, Answer2).
+query([A, 'of', C1, 'of', C2], Answer) :-
+	query([A, 'of', C1], Answer1),
+	query([C1, 'of', C2], Answer2),
+	answer(Answer, Answer2, Answer1, _X).
+
+% name of employee of company (through department)
 
 % :::::::: database ::::::::
 
