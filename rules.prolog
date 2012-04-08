@@ -2,50 +2,53 @@
 
 % root classes
 class(company).
+class(department).
+class(employee).
 class(ceo).
 
 % model relations
 reference_of(ceo, company).
+collection_of(department, company).
+collection_of(employee, department).
+attribute_of(name, department).
+attribute_of(name, employee).
 attribute_of(age, ceo).
 attribute_of(salary, ceo).
 
 % grammar of relations
 reference('ceo', ceo).
+collection('departments', department).
+collection('employees', employee).
+attribute('name', name).
 attribute('age', age).
 attribute('salary', salary).
-attribute('money', salary).
 
 % answer format, the `path`
-answer([Class, What], Class, What).
+answer([C, A], C, A).
 
-% resolve both attributes and references
-attrRef(AttributeQ, Class, Attribute) :-
-	attribute(AttributeQ, Attribute),
-	attribute_of(Attribute, Class).
-attrRef(ReferenceQ, Class, Reference) :-
-	reference(ReferenceQ, Reference),
-	reference_of(Reference, Class).
+% resolve attributes, references & collections
+has(Attr, C) :- attribute_of(Attr, C).
+has(Ref, C) :- reference_of(Ref, C).
+has(Coll, C) :- collection_of(Coll, C).
 
 % :::::::: language rules ::::::::
 
 % age of 'Bugs Bunny'
-% ceo of 'ACME'
-query(AttrRefQ, 'of', ClassQ, Answer) :-
-	db(ClassQ, Class), query(AttrRefQ, 'of', Class, Answer).
+query([A, 'of', Db], Answer) :-
+	db(Db, C), query([A, 'of', C], Answer).
 
 % age of ceo
-% ceo of company
-query(AttrRefQ, 'of', Class, Answer) :-
-	attrRef(AttrRefQ, Class, AttrRef),
-	answer(Answer, Class, AttrRef).
+query([A, 'of', C], Answer) :-
+	has(A, C), answer(Answer, C, A).
 
-% age of ceo of company
-query(AttrRef2Q, 'of', AttrRef1Q, 'of', Class, Answer) :-
-	query(AttrRef1Q, 'of', Class, Answer1),
-	query(AttrRef2Q, 'of', AttrRef1Q, Answer2),
+% name of department of company
+query([A2, 'of', A1, 'of', C], Answer) :-
+	query([A1, 'of', C], Answer1),
+	query([A2, 'of', A1], Answer2),
 	answer(Answer, Answer1, Answer2).
 
 % :::::::: database ::::::::
 
 db('ACME', company).
 db('Bugs Bunny', ceo).
+db('Mickey Mouse', employee).
