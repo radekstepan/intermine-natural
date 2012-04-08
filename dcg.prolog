@@ -1,34 +1,34 @@
-q --> attribute(Type1), prep, class(Type2)
-	,{is_same(Type1, Type2)}.
-q --> reference(Type1), prep, class(Type2)
-	,{is_same(Type1, Type2)}.
-q --> attribute(Type1), prep, class(Type2)
-	,{is_same(Type1, Type2)}
-	,prep, class(Type3), {is_child(Type1, Type3)}.
-q --> reference(Type1), prep, class(Type2)
-	,{is_same(Type1, Type2)}
-	,prep, class(Type3), {is_child(Type1, Type3)}.
+% :::::::: grammar ::::::::
 
-prep --> [of].
+q(q(A,C)) --> a(T,A), [of], c(T,C).
+q(q(R,C)) --> r(T,R), [of], c(T,C).
+q(q(A,C1,C2)) --> a(T1,A), [of], c(T1,C1)
+	,[of], c(T2,C2), {is_child(T1, T2)}.
+q(q(R,C1,C2)) --> r(T1,R), [of], c(T1,C1)
+	,[of], c(T2,C2), {is_child(T1, T2)}.
 
-field(Type) --> attribute(Type).
-field(Type) --> reference(Type).
+% :::::::: model ::::::::
 
-class(company) --> [company].
-class(ceo) --> [ceo].
-class(computer) --> [computer].
+c(company, class(company)) --> [company].
+c(ceo, class(ceo)) --> [ceo].
+c(computer, class(computer)) --> [computer].
 
-attribute(company) --> [name].
-attribute(ceo) --> [name].
-attribute(ceo) --> [salary].
-attribute(computer) --> [processor].
+a(company, attribute(name)) --> [name].
+a(ceo, attribute(name)) --> [name].
+a(ceo, attribute(salary)) --> [salary].
+a(computer, attribute(processor)) --> [processor].
 
-reference(company) --> [ceo].
-reference(ceo) --> [computer].
+r(company, reference(ceo)) --> [ceo].
+r(ceo, reference(computer)) --> [computer].
 
-is_same(Type, Type). % same type
-is_child(Type1, Type2) :- % direct child
-	reference(Type2, [Type1, A], A).
-is_child(Type1, Type2) :- % sub child
-	reference(T, [Type1, A], A),
-	is_child(T, Type2).
+% :::::::: rules ::::::::
+
+is_child(T1, T2) :- % direct child
+	r(T2, _X, [T1, A], A).
+is_child(T1, T2) :- % sub child
+	r(T, _X, [T1, A], A),
+	is_child(T, T2).
+
+% show all possible queries
+test(Q) :- q(Tree, Q,[]), write(Tree), write('\n').
+test(_Q).
