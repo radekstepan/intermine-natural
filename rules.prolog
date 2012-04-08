@@ -23,9 +23,7 @@ answer([Class, What], Class, What).
 % age of 'Bugs Bunny'
 query(AttributeQ, 'of', ClassQ, Answer) :-
 	db(ClassQ, Class),
-	attribute(AttributeQ, Attribute),
-	attribute_of(Attribute, Class),
-	answer(Answer, Class, Attribute).
+	query(AttributeQ, 'of', Class, Answer).
 % age of ceo
 query(AttributeQ, 'of', Class, Answer) :-
 	attribute(AttributeQ, Attribute),
@@ -34,9 +32,7 @@ query(AttributeQ, 'of', Class, Answer) :-
 % ceo of 'ACME'
 query(ReferenceQ, 'of', ClassQ, Answer) :-
 	db(ClassQ, Class),
-	reference(ReferenceQ, Reference),
-	reference_of(Reference, Class),
-	answer(Answer, Class, Reference).
+	query(ReferenceQ, 'of', Class, Answer).
 % ceo of company
 query(ReferenceQ, 'of', Class, Answer) :-
 	reference(ReferenceQ, Reference),
