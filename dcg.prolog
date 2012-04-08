@@ -1,14 +1,9 @@
 % q(Q,[]).
-q --> field, prep, object.
+q --> field(Class), object(Class).
 
-field --> attribute.
-field --> reference.
-field --> collection.
+field(company) --> [name].
+field(company) --> [size].
+object(company) --> [company].
 
-attribute --> [name].
-reference --> [ceo].
-collection --> [departments].
-
-prep --> [of].
-
-object --> [company].
+field(ceo) --> [salary].
+object(ceo) --> [ceo].
