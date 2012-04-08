@@ -24,6 +24,7 @@ a(computer, attribute(processor)) --> [processor].
 
 r(company, reference(ceo)) --> [ceo].
 r(ceo, reference(computer)) --> [computer].
+r(computer, reference(monitor)) --> [monitor].
 
 % :::::::: resolve relations ::::::::
 
