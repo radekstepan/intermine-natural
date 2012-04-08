@@ -1,34 +1,22 @@
 % root classes
-class(company).
 class(ceo).
-class(employee).
 
-% names of attrs, cols, refs
-attribute(name).
-reference(ceo).
-collection(employees).
+% model relations
+attribute_of(age, ceo).
+attribute_of(salary, ceo).
 
-% for collections, link to class; allows us to say 'employee|employees' of Class
-type(employees,employee).
+% grammar of relations
+attribute('age', age).
+attribute('salary', salary).
+attribute('money', salary).
 
-% the model relations
-relation(name,company).
-relation(name,ceo).
-relation(name,employee).
-relation(ceo,company).
-relation(employee,company).
-
-% model rules
-attribute(Attribute,Class) :-
-	attribute(Attribute),relation(Attribute,Class). % company -> name
-reference(ReferenceClass,Class) :-
-	reference(ReferenceClass),relation(ReferenceClass,Class). % company -> ceo
-collection(Collection,Class) :-
-	type(Collection,CollectionClass),collection(Collection),relation(CollectionClass,Class). % company -> employees
-collection(CollectionClass,Class) :-
-	type(Collection,CollectionClass),collection(Collection),relation(CollectionClass,Class). % company -> employee
+% answer format
+answer([Class, Attribute], Class, Attribute).
 
 % language rules
-query(Attribute, 'of', Class) :- attribute(Attribute,Class).
-query(Reference, 'of', Class) :- reference(Reference,Class).
-query(Collection, 'of', Class) :- collection(Collection,Class).
+% query(Attribute,'of',Object, Answer).
+query(AttributeQ, 'of', ClassQ, Answer) :-
+	db(ClassQ, Class), attribute(AttributeQ, Attribute), attribute_of(Attribute, Class), answer(Answer, Class, Attribute).
+
+% database
+db('Bugs Bunny', ceo).
