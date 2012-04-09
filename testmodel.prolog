@@ -31,8 +31,10 @@ r(employee, 'Reference: computer') --> [computer].
 % :::::::: resolve relations ::::::::
 
 % direct child
-is_child(T1, T2, _L) :-
+is_child(T1, T2, []) :-
     r(T2, _X, [T1, A], A).
+    % test
+    %prepend([], [], L).
 % sub child
 is_child(T1, T2, L) :-
     % try a type `T`, that is not the root class
