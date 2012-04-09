@@ -1,15 +1,13 @@
 % :::::::: grammar ::::::::
 
-% attribute of class
-q(q(L1)) --> a(T,A), {add(A,[],L0)}, [of], c(T,C), {add(C,L0,L1)}.
-% reference of class
-q(q(L1)) --> r(T,R), {add(R,[],L0)}, [of], c(T,C), {add(C,L0,L1)}.
-% attribute of class of class
-q(q(L4)) --> a(T1,A), {add(A,[],L0)}, [of], c(T1,C1), {add(C1,L0,L1)}
+% field of class
+q(q(L1)) --> f(T,F), {add(F,[],L0)}, [of], c(T,C), {add(C,L0,L1)}.
+% field of class of class
+q(q(L4)) --> f(T1,F), {add(F,[],L0)}, [of], c(T1,C1), {add(C1,L0,L1)}
             , [of], c(T2,C2), {is_child(T1, T2, L2)}, {add(L2,L1,L3)}, {add(C2,L3,L4)}.
-% reference of class of class
-q(q(L4)) --> r(T1,R), {add(R,[],L0)}, [of], c(T1,C1), {add(C1,L0,L1)}
-            , [of], c(T2,C2), {is_child(T1, T2, L2)}, {add(L2,L1,L3)}, {add(C2,L3,L4)}.
+% attribute and reference fields
+f(T,F) --> a(T,F).
+f(T,F) --> r(T,F).
 
 % :::::::: model ::::::::
 
