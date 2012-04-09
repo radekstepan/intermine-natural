@@ -3,17 +3,20 @@ prolog = require "../prolog"
 
 q =
     'against an attribute of a class sentence':
-        sentence: 'name of company', tree: 'q(attribute(name),class(company))'
+        sentence: 'name of company'
+        tree: 'Attribute: name -> Class: company'
     'against a reference of a class sentence':
-        sentence: 'CEO of company',  tree: 'q(reference(ceo),class(company))'
+        sentence: 'department of company'
+        tree: 'Reference: department -> Class: company'
     'against an attribute of a class of a direct parent class sentence':
-        sentence: 'name of CEO of company',  tree: 'q(attribute(name),class(ceo),class(company))'
+        sentence: 'name of department of company'
+        tree: 'Attribute: name -> Class: department -> Class: company'
     'against a reference of a class of a direct parent class sentence':
-        sentence: 'computer of CEO of company',  tree: 'q(reference(computer),class(ceo),class(company))'
+        sentence: 'employee of department of company'
+        tree: 'Reference: employee -> Class: department -> Class: company'
     'against an attribute of a class of a higher parent class sentence':
-        sentence: 'processor of computer of company',  tree: 'q(attribute(processor),class(computer),class(company))'
-    'against a reference of a class of a higher parent class sentence':
-        sentence: 'monitor of computer of company',  tree: 'q(reference(monitor),class(computer),class(company))'
+        sentence: 'name of employee of company'
+        tree: 'Attribute: name -> Class: employee -> Class: company'
 
 describe "testmodel.prolog", ->
     

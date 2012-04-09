@@ -13,18 +13,17 @@ q(q(R,C1,C2)) --> r(T1,R), [of], c(T1,C1)
 
 % :::::::: model ::::::::
 
-c(company, class(company)) --> [company].
-c(ceo, class(ceo)) --> [ceo].
-c(computer, class(computer)) --> [computer].
+c(company, 'Class: company') --> [company].
+c(department, 'Class: department') --> [department].
+c(employee, 'Class: employee') --> [employee].
 
-a(company, attribute(name)) --> [name].
-a(ceo, attribute(name)) --> [name].
-a(ceo, attribute(salary)) --> [salary].
-a(computer, attribute(processor)) --> [processor].
+a(company, 'Attribute: name') --> [name].
+a(department, 'Attribute: name') --> [name].
+a(employee, 'Attribute: name') --> [name].
+a(employee, 'Attribute: salary') --> [salary].
 
-r(company, reference(ceo)) --> [ceo].
-r(ceo, reference(computer)) --> [computer].
-r(computer, reference(monitor)) --> [monitor].
+r(company, 'Reference: department') --> [department].
+r(department, 'Reference: employee') --> [employee].
 
 % :::::::: resolve relations ::::::::
 
@@ -35,5 +34,5 @@ is_child(T1, T2) :- % sub child
     is_child(T, T2).
 
 % show tree if Q is valid
-show_tree(Q) :- q(Tree, Q,[]), write(Tree).
+show_tree(Q) :- q(Tree, Q, []), write(Tree).
 show_tree(_Q).
