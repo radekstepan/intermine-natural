@@ -35,10 +35,11 @@ is_child(T1, T2) :-
     r(T2, _X, [T1, A], A).
 % sub child
 is_child(T1, T2) :-
-    % try a type `T`
-    r(T, _X, [T1, A], A),
+    % try a type `T`, that is not the root class
+    r(T, _X, [T1, A], A), T \= T2,
     % add the 'through' reference
     %c(T, C, [_A, B], B), add(C, [], L),
+    write(T), write(' '), write(T2), write('\n'),
     % recurse
     is_child(T, T2).
 
