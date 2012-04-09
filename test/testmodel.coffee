@@ -4,19 +4,19 @@ prolog = require "../prolog"
 q =
     'against an attribute of a class sentence':
         sentence: 'name of company'
-        tree: 'Attribute: name -> Class: company'
+        tree: 'company (Class) -> name (Attribute)'
     'against a reference of a class sentence':
         sentence: 'department of company'
-        tree: 'Reference: department -> Class: company'
+        tree: 'company (Class) -> department (Reference)'
     'against an attribute of a class of a direct parent class sentence':
         sentence: 'name of department of company'
-        tree: 'Attribute: name -> Class: department -> Class: company'
+        tree: 'company (Class) -> department (Class) -> name (Attribute)'
     'against a reference of a class of a direct parent class sentence':
         sentence: 'employee of department of company'
-        tree: 'Reference: employee -> Class: department -> Class: company'
+        tree: 'company (Class) -> department (Class) -> employee (Reference)'
     'against an attribute of a class of a higher parent class sentence':
-        sentence: 'name of employee of company'
-        tree: 'Attribute: name -> Class: employee -> Class: company'
+        sentence: 'CPU of computer of company'
+        tree: 'company (Class) -> department (Class) -> employee (Class) -> computer (Class) -> CPU (Attribute)'
 
 describe "testmodel.prolog", ->
     

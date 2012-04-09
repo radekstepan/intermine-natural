@@ -13,28 +13,26 @@ q(q(L4)) --> r(T1,R), {add(R,[],L0)}, [of], c(T1,C1), {add(C1,L0,L1)}
 
 % :::::::: model ::::::::
 
-c(company, 'Class: company') --> [company].
-c(department, 'Class: department') --> [department].
-c(employee, 'Class: employee') --> [employee].
-c(computer, 'Class: computer') --> [computer].
+c(company, 'company (Class)') --> [company].
+c(department, 'department (Class)') --> [department].
+c(employee, 'employee (Class)') --> [employee].
+c(computer, 'computer (Class)') --> [computer].
 
-a(company, 'Attribute: name') --> [name].
-a(department, 'Attribute: name') --> [name].
-a(employee, 'Attribute: name') --> [name].
-a(employee, 'Attribute: salary') --> [salary].
-a(computer, 'Attribute: CPU') --> [cpu].
+a(company, 'name (Attribute)') --> [name].
+a(department, 'name (Attribute)') --> [name].
+a(employee, 'name (Attribute)') --> [name].
+a(employee, 'salary (Attribute)') --> [salary].
+a(computer, 'CPU (Attribute)') --> [cpu].
 
-r(company, 'Reference: department') --> [department].
-r(department, 'Reference: employee') --> [employee].
-r(employee, 'Reference: computer') --> [computer].
+r(company, 'department (Reference)') --> [department].
+r(department, 'employee (Reference)') --> [employee].
+r(employee, 'computer (Reference)') --> [computer].
 
 % :::::::: resolve relations ::::::::
 
 % direct child
 is_child(T1, T2, []) :-
     r(T2, _X, [T1, A], A).
-    % test
-    %prepend([], [], L).
 % sub child
 is_child(T1, T2, L) :-
     % try a type `T`, that is not the root class

@@ -13,4 +13,4 @@ to_prolog = (sentence) ->
 
 # Strip Prolog output into 'normal' text.
 from_prolog = (output) ->
-    output.replace(/\s/g, '').replace(/\,/g, ' -> ').replace(/\:/g, ': ')[2..-2]
+    output.replace(/\s|\[|\]/g, '').replace(/\|/g, ',').replace(/,{2}/g, ',').replace(/,/g, ' -> ')[2..-2].replace(/\(/g, ' (')
