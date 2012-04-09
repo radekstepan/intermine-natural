@@ -1,13 +1,12 @@
 % :::::::: grammar ::::::::
 
 % field of class
-q(q(L)) --> simple_q(L).
+q(q(L)) --> simple_q(_T,L).
 % field of class of class
-q(q(L4)) --> f(T1,F), {add(F,[],L0)}, [of], c(T1,C1), {add(C1,L0,L1)}
-            , [of], c(T2,C2), {is_child(T1, T2, L2)}, {add(L2,L1,L3)}, {add(C2,L3,L4)}.
+q(q(L)) --> simple_q(T1,L1), [of], c(T2,C2), {is_child(T1, T2, L2)}, {add(L2,L1,L3)}, {add(C2,L3,L)}.
 
 % 'simple' query
-simple_q(L1) --> f(T,F), {add(F,[],L0)}, [of], c(T,C), {add(C,L0,L1)}.
+simple_q(T,L1) --> f(T,F), {add(F,[],L0)}, [of], c(T,C), {add(C,L0,L1)}.
 
 % attribute and reference fields
 f(T,F) --> a(T,F).
