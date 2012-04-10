@@ -1,3 +1,23 @@
 consult('filename').
 reconsult('filename').
 listing.
+
+% Treat each term as a variable and exit on the shortest (number of V) possible match.
+
+q(Tree, [param, of, company], []);
+q(Tree, [param, of|X], []), X = [V];
+q(Tree, [param|X], []), X = [V, company];
+q(Tree, X, []), X = [V, of, company].
+
+q(Tree, [name, of, acme], []);
+q(Tree, [name, of|X], []), X = [V];
+q(Tree, [name|X], []), X = [V, acme];
+q(Tree, X, []), X = [V, of, acme].
+
+q(Tree, [param, of, acme], []);
+q(Tree, [param, of|X], []), X = [V];
+q(Tree, [param|X], []), X = [V, acme];
+q(Tree, X, []), X = [V, of, acme];
+q(Tree, [param|X], []), X = [V1, V2];
+q(Tree, X, []), X = [V1, V2, acme];
+q(Tree, X, []), X = [V1, V2, V3].
