@@ -50,3 +50,8 @@ prepend(E, L, [L|E]).
 % show tree if Q is valid
 show_tree(Q) :- q(Tree, Q, []), write(Tree).
 show_tree(_Q).
+
+% p([name,of,company],L).
+p([], []).
+p([X|Xs], [X|Ys]) :- p(Xs, Ys).
+p([_|_], _).
