@@ -1,3 +1,5 @@
+% http://www.cse.unsw.edu.au/~billw/prologdict.html#findall
+
 consult('filename').
 reconsult('filename').
 listing.
