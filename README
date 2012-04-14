@@ -11,15 +11,7 @@ q(Tree, [param, of|X], []), X = [V];
 q(Tree, [param|X], []), X = [V, company];
 q(Tree, X, []), X = [V, of, company].
 
-q(Tree, [name, of, acme], []);
-q(Tree, [name, of|X], []), X = [V];
-q(Tree, [name|X], []), X = [V, acme];
-q(Tree, X, []), X = [V, of, acme].
-
-q(Tree, [param, of, acme], []);
-q(Tree, [param, of|X], []), X = [V];
-q(Tree, [param|X], []), X = [V, acme];
-q(Tree, X, []), X = [V, of, acme];
-q(Tree, [param|X], []), X = [V1, V2];
-q(Tree, X, []), X = [V1, V2, acme];
-q(Tree, X, []), X = [V1, V2, V3].
+q(Tree, [param, of, company], []);
+q(Tree, [param, of, A], []);
+q(Tree, [param, A, company], []);
+q(Tree, [A, of, company], []).

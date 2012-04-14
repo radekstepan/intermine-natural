@@ -48,10 +48,9 @@ add(E, L, [E|L]).
 prepend(E, L, [L|E]).
 
 % show tree if Q is valid
-show_tree(Q) :- q(Tree, Q, []), write(Tree).
+show_tree(Q) :- q(Tree, Q, []), write(Tree), write('\n').
 show_tree(_Q).
 
-% p([name,of,company],L).
-p([], []).
-p([X|Xs], [X|Ys]) :- p(Xs, Ys).
-p([_|_], _).
+% suggest paths
+suggest([]).
+suggest([Head|Tail]) :- findall(_, show_tree(Head), _), suggest(Tail).
