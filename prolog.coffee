@@ -14,7 +14,7 @@ exports.suggest = (sentence, callback) ->
     )
 
 # Generate sentence variants with terms replaced by variables.
-variablize = (sentence, vars=1) ->
+variablize = (sentence) ->
     sentence = sentence.split(',')
     result = []
     for index in [1..sentence.length]
