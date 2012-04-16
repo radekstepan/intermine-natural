@@ -21,6 +21,6 @@ describe "testmodel.prolog", ->
         do (test, sentence, tree) ->
             describe test + ', "' + sentence + '"', ->
                 it 'should output parsed tree, "' + tree + '"', (done) ->
-                    prolog.show_tree sentence, (output) ->
+                    prolog.show_path sentence, (output) ->
                         [output].should.eql [tree]
                         done()

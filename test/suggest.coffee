@@ -5,7 +5,7 @@ describe "testmodel.prolog suggest", ->
     
     describe 'suggest sentences', ->
         sentence = 'attr of company'
-        expected = 'q([company (Class),name (Attribute)]) | q([company (Class),department (Reference)])'
+        expected = 'q([company (Class), name (Attribute)]) | q([company (Class), department (Reference)])'
         
         it 'should suggest matches', (done) ->
             prolog.suggest sentence, (output) ->
