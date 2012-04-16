@@ -1,30 +1,28 @@
 exec = require('child_process').exec
 
-# Show a tree for an input `sentence` if is valid according to Prolog rules.
+# Show a path for an input `sentence` if is valid according to Prolog rules.
 exports.show_path = (sentence, callback) ->
     sentence = to_prolog sentence
-    child = exec("prolog -f testmodel.pro -g \"show_path([#{sentence}]),halt\"", (error, stdout, stderr) ->
-        if not error then callback from_prolog stdout
-    )
+    call_prolog("show_path([#{sentence}])", callback)
 
+# Failing to match a path, variablize the sentence and get path suggestions.
 exports.suggest = (sentence, callback) ->
     sentence = to_prolog sentence
-    child = exec("prolog -f testmodel.pro -g \"show_path([#{sentence}], [X]),halt\"", (error, stdout, stderr) ->
-        if not error then callback cleanup stdout
+    call_prolog("show_path([#{sentence}], [X])", callback)
+
+# Call the, uh, Prolog.
+call_prolog = (predicate, callback) ->
+    child = exec("prolog -f testmodel.pro -g \"#{predicate},halt\"", (error, stdout, stderr) ->
+        if not error then callback from_prolog stdout
     )
 
 # Parse 'messy' sentence into Prolog form.
 to_prolog = (sentence) ->
     sentence.replace(/^\s|\s{2}/g, '').toLowerCase().split(' ').join(',')
 
-cleanup = (output) ->
-    output
-    .replace(/^\s+|\s+$/g, '') # trim whitespace
-    .replace(/\n|\nq/g, ' | ') # split into different matches
-
-# Strip Prolog output into 'normal' text.
+# Cleanup Prolog output.
 from_prolog = (output) ->
     output
-    .replace(/\s|\[|\]/g, '')
-    .replace(/\|/g, ',')
-    .replace(/,{2}/g, ',')
+    .replace(/\[\]\s*,\s*/, '') # strip empty lists
+    .replace(/^\s+|\s+$/g, '') # trim whitespace
+    .replace(/\n|\nq/g, ' | ') # split into different matches
