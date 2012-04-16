@@ -8,7 +8,17 @@ exports.show_path = (sentence, callback) ->
 # Failing to match a path, variablize the sentence and get path suggestions.
 exports.suggest = (sentence, callback) ->
     sentence = to_prolog sentence
-    call_prolog("show_path([#{sentence}], [X])", callback)
+    
+    index = 0
+    (has_match = (output) ->
+        if output or index is sentence.split(',').length
+            callback output
+        else
+            ((index) ->
+                vars = ("X#{i+1}" for i in [0..index-1]).join(',') if index
+                call_prolog("show_path([#{sentence}], [#{vars or ''}])", has_match)
+            )(index++)
+    )()
 
 # Call the, uh, Prolog.
 call_prolog = (predicate, callback) ->
