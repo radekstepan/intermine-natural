@@ -43,14 +43,26 @@ is_child(T1, T2, L) :-
     % add the 'through' reference
     c(T, C, [_A, B], B), prepend(C, L1, L).
 
+% :::::::: executors ::::::::
+
 % add element to list
 add(E, L, [E|L]).
 prepend(E, L, [L|E]).
 
 % show tree if Q is valid
-show_tree(Q) :- q(Tree, Q, []), write(Tree), write('\n').
-show_tree(_Q).
+show_path(Q) :- q(Tree, Q, []), write(Tree), write('\n').
+show_path(_Q).
 
-% suggest paths
-suggest([]).
-suggest([Head|Tail]) :- findall(_, show_tree(Head), _), suggest(Tail).
+% process list of sentences
+process_list([]).
+process_list([Head|Tail]) :- findall(_, show_path(Head), _), process_list(Tail).
+
+% suggest paths, for 'incomplete' sentence
+show_path(I, X) :- bagof(R, distribute(I, X, R), L), process_list(L).
+
+% distribute vars across a list
+distribute(I, [X|Xs], L) :-
+    append(A, [_|C], I),
+    distribute(C, Xs, R),
+    append(A, [X|R], L).
+distribute(I, [], I).
