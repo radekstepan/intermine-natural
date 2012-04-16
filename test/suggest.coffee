@@ -1,13 +1,20 @@
 should = require "should"
 prolog = require "../prolog"
 
+q =
+    'against an unknown attribute':
+        sentence: 'attr of company'
+        path: 'q([company (Class), name (Attribute)]) | q([company (Class), department (Reference)])'
+    'against an unknown class':
+        sentence: 'salary of Radek'
+        path: 'q([employee (Class), salary (Attribute)])'
+
 describe "testmodel.prolog suggest", ->
     
-    describe 'suggest sentences', ->
-        sentence = 'attr of company'
-        expected = 'q([company (Class), name (Attribute)]) | q([company (Class), department (Reference)])'
-        
-        it 'should suggest matches', (done) ->
-            prolog.suggest sentence, (output) ->
-                [output].should.eql [expected]
-                done()
+    for test, {sentence, path} of q
+        do (test, sentence, path) ->
+            describe test + ', "' + sentence + '"', ->
+                it 'should output path, "' + path + '"', (done) ->
+                    prolog.suggest sentence, (output) ->
+                        [output].should.eql [path]
+                        done()
