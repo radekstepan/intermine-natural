@@ -5,6 +5,9 @@
   , "dependencies": {
       "should":        "latest",
       "mocha":         "latest",
+      "eco":           "latest",
+      "colors":        "latest",
+      "mime":          "latest",
       "coffee-script": "latest"
   }
 }
