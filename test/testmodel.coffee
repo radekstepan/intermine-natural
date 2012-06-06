@@ -1,5 +1,5 @@
 should = require "should"
-prolog = require "../prolog"
+prolog = require "../prolog/prolog.coffee"
 
 q =
     'against an attribute of a class sentence':

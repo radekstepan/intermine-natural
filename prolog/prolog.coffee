@@ -22,7 +22,7 @@ exports.suggest = (sentence, callback) ->
 
 # Call the, uh, Prolog.
 call_prolog = (predicate, callback) ->
-    child = exec("prolog -f testmodel.pro -g \"#{predicate},halt\"", (error, stdout, stderr) ->
+    child = exec("prolog -f prolog/testmodel.pro -g \"#{predicate},halt\"", (error, stdout, stderr) ->
         if not error then callback from_prolog stdout
     )
 
