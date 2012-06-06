@@ -1,8 +1,10 @@
 {
-    "name": "prolog"
+    "name": "intermine-natural-language-search"
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
-      "should": "latest"
+      "should":        "latest",
+      "mocha":         "latest",
+      "coffee-script": "latest"
   }
 }

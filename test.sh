@@ -1,1 +1,2 @@
-clear ; coffee --compile prolog.coffee ; coffee --compile test/ ; mocha --ui bdd --reporter spec
+#!/usr/bin/env bash
+mocha --compilers coffee:coffee-script --ui bdd --reporter spec
