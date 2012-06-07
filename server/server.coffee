@@ -1,38 +1,43 @@
 fs      = require 'fs'
 http    = require 'http'
+util    = require 'util'
 eco     = require 'eco'
 colors  = require 'colors'
 mime    = require 'mime'
 
 # Eco template rendering.
-render = (res, path, data={}) ->
+render = (request, response, path, data={}) ->
+    console.log "#{request.method} #{request.url}".bold
+
     fs.readFile "./server/templates/#{path}.eco", "utf8", (err, template) ->
-        if err then throw err
+        throw err if err
 
-        out = eco.render template, data
-        res.writeHead 200,
+        resource = eco.render template, data
+        response.writeHead 200,
             'Content-Type':  'text/html'
-            'Content-Length': out.length
-        res.write out
-        res.end()
+            'Content-Length': resource.length
+        response.write resource
+        response.end()
 
-server = http.createServer (req, res) ->
+server = http.createServer (request, response) ->
 
-    console.log "#{req.method} #{req.url}".grey
-
-    switch req.url
+    switch request.url
         when '/'
-            render res, 'index'
+            render request, response, 'index'
         else
-            fs.readFile "./server#{req.url}", "utf8", (err, resource) ->
-                if not err
-                    res.writeHead 200,
-                        'Content-Type':   mime.lookup "./server#{req.url}"
-                        'Content-Length': resource.length
-                    res.write resource
-                    res.end()
+            # Public resource?
+            console.log "#{request.method} #{request.url}".grey
+
+            file = "./server#{request.url}"
+            fs.stat file, (err, stat) ->
+                if err then console.log "#{request.url} not found".red
                 else
-                    console.log "#{req.url} not found".red
+                    response.writeHead 200,
+                        "Content-Type":   mime.lookup file
+                        "Content-Length": stat.size
+
+                    util.pump fs.createReadStream(file), response, (err) ->
+                        throw err if err
 
 server.listen 1115
 console.log "Listening on port 1115".green.bold
