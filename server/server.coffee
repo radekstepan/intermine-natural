@@ -30,8 +30,13 @@ server = http.createServer (request, response) ->
 
             file = "./server#{request.url}"
             fs.stat file, (err, stat) ->
-                if err then console.log "#{request.url} not found".red
+                if err
+                    # 404.
+                    console.log "#{request.url} not found".red
+                    response.writeHead 404
+                    response.end()
                 else
+                    # Stream file.
                     response.writeHead 200,
                         "Content-Type":   mime.lookup file
                         "Content-Length": stat.size
