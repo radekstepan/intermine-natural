@@ -33,6 +33,7 @@ to_prolog = (sentence) ->
 # Cleanup Prolog output.
 from_prolog = (output) ->
     output
-    .replace(/\[\]\s*,\s*/, '') # strip empty lists
-    .replace(/^\s+|\s+$/g, '') # trim whitespace
-    .replace(/\n|\nq/g, ' | ') # split into different matches
+    .replace(/\[\]\s*,\s*/, '')  # strip empty lists
+    .replace(/^\s+|\s+$/g, '')   # trim whitespace
+    .replace(/\n|\nq/g, ' | ')   # split into different matches
+    .replace(/\,\b(?! )/g, ', ') # follow comma with a space if not already
