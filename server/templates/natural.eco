@@ -3,7 +3,11 @@
     <head>
         <title>InterMine Natural</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/natural.css" />
+
+        <script>
+        window.onerror = function(m, f, l) { (new Image).src = '/errors?message='+encodeURIComponent(m)+'&file='+encodeURIComponent(f)+'&line='+encodeURIComponent(l); }
+        </script>
     </head>    
     <body>
         <div id="wrap" class="container">

@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+    <head>
+        <title>InterMine Natural</title>
+        <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+        <link rel="stylesheet" type="text/css" href="/css/cargo.less.css">
+    </head>
+    <body>
+        <header>
+            <div class="wrapper">
+                <nav>
+                    <ul>
+                        <li><a>One</a></li>
+                        <li><a>Two</a></li>
+                    </ul>
+                </nav>
+
+                <div id="logo"></div>
+            </div>
+        </header>
+
+        <fieldset id="input">
+            <div class="wrapper">
+                <p>Try these:</p>
+                <ul>
+                    <li><a>name of employee of company</a></li>
+                </ul>
+
+                <form>
+                    <input type="text" />
+                    <input type="submit" value="Go" />
+                </form>
+            </div>
+        </fieldset>
+
+        <article id="assumptions" class="wrapper">
+            <ul>
+                <li>
+                    <ul class="options">
+                        <li>Assuming "pparg" is a gene</li>
+                        <li>Use as <a>a protein</a> instead</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="options">
+                        <li>Assuming PPARG (human gene)</li>
+                        <li>
+                            Use <a>Pparg (mouse gene)</a> or
+                            <select>
+                                <option>Pparg (rat gene)</option>
+                                <option>PPARG (cow gene)</option>
+                                <option>pparg (zebrafish gene)</option>
+                                <option>PPARG (dog gene)</option>
+                                <option>PPARG (chimpanzee gene)</option>
+                                <option>PPARG (chicken gene)</option>
+                            </select>
+                            instead
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+
+        <article id="results" class="wrapper">
+            <ul>
+                <li>
+                    <a>company (Class)</a>
+                    <ul>
+                        <li>
+                            <a>department (Class)</a>
+                            <ul>
+                                <li><a>employee (Reference)</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </article>
+    </body>
+</html>
