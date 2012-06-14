@@ -5,8 +5,6 @@
 
         <link rel="stylesheet" type="text/css" href="/css/reset.css" />
         <link rel="stylesheet" type="text/css" href="/css/cargo.less.css">
-
-        <script src="/js/jquery.min.js"></script>
     </head>
     <body>
         <header>
@@ -76,10 +74,13 @@
                                                 <td class="selected type1">employees</td>
                                                 <td class="selected type2">CEO</td>
                                                 <td>bank</td>
-                                                <td>VAT</td>
+                                                <td class="selected type5">VAT</td>
                                             </tr>
                                         </table>
                                     </div>
+                                </td>
+                                <td class="fill">
+                                    <div class="line horizontal"></div>
                                 </td>
                                 <td>
                                     <div class="box type1">
@@ -88,13 +89,35 @@
                                             <tr>
                                                 <td class="selected">name <span>= "Radek"</span></td>
                                                 <td>salary</td>
+                                                <td class="selected type4">computer</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td class="fill">
+                                    <div class="line horizontal"></div>
+                                </td>
+                                <td>
+                                    <div class="box type4">
+                                        <div class="class">Computer</div>
+                                        <table class="fields">
+                                            <tr>
+                                                <td class="selected">CPU</td>
+                                                <td>make</td>
+                                                <td>model</td>
                                             </tr>
                                         </table>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
+                                <td>
+                                    <div class="line horizontal vertical"></div>
+                                    <div class="line bottom"></div>
+                                </td>
+                                <td class="fill">
+                                    <div class="line horizontal"></div>
+                                </td>
                                 <td>
                                     <div class="box type2">
                                         <div class="class">CEO</div>
@@ -102,6 +125,24 @@
                                             <tr>
                                                 <td>name</td>
                                                 <td class="selected">salary</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="line horizontal vertical"></div>
+                                </td>
+                                <td class="fill">
+                                    <div class="line horizontal"></div>
+                                </td>
+                                <td>
+                                    <div class="box type5">
+                                        <div class="class">VAT</div>
+                                        <table class="fields">
+                                            <tr>
+                                                <td class="selected">number</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -125,6 +166,9 @@
                                             </tr>
                                         </table>
                                     </div>
+                                </td>
+                                <td class="fill">
+                                    <div class="line horizontal"></div>
                                 </td>
                                 <td>
                                     <div class="box type3">

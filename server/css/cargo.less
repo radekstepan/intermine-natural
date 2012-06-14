@@ -114,7 +114,8 @@ article#results { float:left; margin-top:20px;
     ol {
         li { display:block;
             div.position { float:left; margin:25px 30px 0 0; border-radius:999px; width:14px; height:14px; line-height:10px; background:#F2F2F2; text-align:center; }
-            &:not(:first-child) { border-top:1px dashed #D2D2D2;
+            &:not(:first-child) {
+                &:before { content:"\2053 or \2053"; color:#CCC; font-style:italic; font-family:serif; display:block; width:100%; text-align:center; }
                 div.position { margin:45px 30px 20px 0; }
                 table.query { margin:20px 0; }
             }
@@ -122,12 +123,17 @@ article#results { float:left; margin-top:20px;
         }
     }
     table.query {
-        td { padding:4px 10px; position:relative;
+        td { position:relative;
+            &.fill { width:20px;
+                div.line { width:100%; }
+            }
             &:first-child { padding-left:0; }
             div.box { border:1px solid #FFF; background:#F2F2F2; .shadow(0 1px 3px #999); padding:2px;
                 &.type1, td.type1 { background:rgba(255,83,53,0.8); }
                 &.type2, td.type2 { background:rgba(178,156,133,0.8); }
                 &.type3, td.type3 { background:rgba(116,192,207,0.7); }
+                &.type4, td.type4 { background:rgb(255,211,78); }
+                &.type5, td.type5 { background:rgb(106,217,123); }
                 div.class { background:#FCFCFC; padding:4px 8px; text-shadow:-1px -1px 0px #FFF; font-weight:bold; text-align:center; }
                 table.fields { font-size:12px; margin:0 auto; width:100%; background:#F2F2F2;
                     td { padding:0 4px; text-align:center; vertical-align:middle; line-height:19px;
@@ -137,6 +143,11 @@ article#results { float:left; margin-top:20px;
                         }
                     }
                 }
+            }
+            div.line { height:50%; width:50%; position:absolute; border: 0 dashed #D2D2D2;
+                &.vertical { top:0; right:0; border-left-width:1px; }
+                &.horizontal { top:0; right:0; border-bottom-width:1px; }
+                &.bottom { bottom:0; right:0; border-left-width:1px; }
             }
         }
     }
