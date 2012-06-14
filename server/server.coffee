@@ -39,38 +39,34 @@ css = (request, response, path) ->
 
 server = http.createServer (request, response) ->
 
-    switch request.url
-        when '/natural'
-            render request, response, 'natural'
-        when '/apper'
-            render request, response, 'apper'
-        when '/cargo'
-            render request, response, 'cargo'
-        when '/cargo/alt'
-            render request, response, 'cargo-alt'
-        else
-            # Public resource?
-            console.log "#{request.method} #{request.url}".grey
-
-            file = "./server#{request.url}"
-            # LESS?
-            if file[-9...] is '.less.css'
-                css request, response, file.replace('.less.css', '.less')
+    if request.method is 'GET'
+        switch request.url
+            when '/'
+                render request, response, 'cargo-alt'
             else
-                fs.stat file, (err, stat) ->
-                    if err
-                        # 404.
-                        console.log "#{request.url} not found".red
-                        response.writeHead 404
-                        response.end()
-                    else
-                        # Stream file.
-                        response.writeHead 200,
-                            "Content-Type":   mime.lookup file
-                            "Content-Length": stat.size
+                # Public resource?
+                console.log "#{request.method} #{request.url}".grey
 
-                        util.pump fs.createReadStream(file), response, (err) ->
-                            throw err if err
+                file = "./server#{request.url}"
+                # LESS?
+                if file[-9...] is '.less.css'
+                    css request, response, file.replace('.less.css', '.less')
+                else
+                    fs.stat file, (err, stat) ->
+                        if err
+                            # 404.
+                            console.log "#{request.url} not found".red
+                            response.writeHead 404
+                            response.end()
+                        else
+                            # Stream file.
+                            response.writeHead 200,
+                                "Content-Type":   mime.lookup file
+                                "Content-Length": stat.size
+
+                            util.pump fs.createReadStream(file), response, (err) ->
+                                throw err if err
+    else response.end()
 
 server.listen 1115
 console.log "Listening on port 1115".green.bold
