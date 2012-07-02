@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-coffee server/server.coffee
+./node_modules/coffee-script/bin/coffee server.coffee
