@@ -1,0 +1,3 @@
+[submodule "server/pallur"]
+	path = server/pallur
+	url = git@github.com:radekstepan/pallur.git
