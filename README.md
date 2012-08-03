@@ -2,6 +2,8 @@
 
 Natural Language User Interface for InterMine models.
 
+![image](https://github.com/radekstepan/intermine-natural/raw/master/misc/test.png)
+
 ## Dependencies:
 
 First, SWI Prolog needs to be installed:
@@ -31,3 +33,7 @@ $ ./node_modules/.bin/coffee server.coffee
 ```bash
 $ npm test
 ```
+
+## Architecture
+
+![image](https://github.com/radekstepan/intermine-natural/raw/master/misc/architecture.jpg)
