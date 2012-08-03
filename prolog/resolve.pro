@@ -14,20 +14,22 @@ f(T,F) --> r(T,F).
 
 % :::::::: model ::::::::
 
-c(company, 'company (Class)') --> [company].
-c(department, 'department (Class)') --> [department].
-c(employee, 'employee (Class)') --> [employee].
-c(computer, 'computer (Class)') --> [computer].
+:- ensure_loaded('model.pro').
 
-a(company, 'name (Attribute)') --> [name].
-a(department, 'name (Attribute)') --> [name].
-a(employee, 'name (Attribute)') --> [name].
-a(employee, 'salary (Attribute)') --> [salary].
-a(computer, 'CPU (Attribute)') --> [cpu].
+% c(company, 'company (Class)') --> [company].
+% c(department, 'department (Class)') --> [department].
+% c(employee, 'employee (Class)') --> [employee].
+% c(computer, 'computer (Class)') --> [computer].
 
-r(company, 'department (Reference)') --> [department].
-r(department, 'employee (Reference)') --> [employee].
-r(employee, 'computer (Reference)') --> [computer].
+% a(company, 'name (Attribute)') --> [name].
+% a(department, 'name (Attribute)') --> [name].
+% a(employee, 'name (Attribute)') --> [name].
+% a(employee, 'salary (Attribute)') --> [salary].
+% a(computer, 'CPU (Attribute)') --> [cpu].
+
+% r(company, 'department (Reference)') --> [department].
+% r(department, 'employee (Reference)') --> [employee].
+% r(employee, 'computer (Reference)') --> [computer].
 
 % :::::::: resolve relations ::::::::
 

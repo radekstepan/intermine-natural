@@ -34,6 +34,12 @@ $ ./node_modules/.bin/coffee server.coffee
 $ npm test
 ```
 
+Alternatively, one can play around with the Prolog interpreter directly:
+
+```bash
+$ prolog -f ./prolog/resolve.pro -g "show_path([attr,of,company], []),halt"
+```
+
 ## Architecture
 
 ![image](https://github.com/radekstepan/intermine-natural/raw/master/misc/architecture.jpg)

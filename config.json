@@ -1,4 +1,55 @@
 {
     "port": 1115,
-    "mine": "http://beta.flymine.org/beta/service"
+    "mine": "http://beta.flymine.org/beta/service",
+    "model": {
+        "name": "genomic",
+        "classes": {
+            "Company": {
+                "attributes": {
+                    "name": {
+                        "type": "String"
+                    }
+                },
+                "collections": {
+                    "department": {
+                        "referencedType": "Department" 
+                    }
+                }
+            },
+            "Department": {
+                "attributes": {
+                    "name": {
+                        "type": "String"
+                    }
+                },
+                "collections": {
+                    "employee": {
+                        "referencedType": "Employee" 
+                    }
+                }
+            },
+            "Employee": {
+                "attributes": {
+                    "name": {
+                        "type": "String"
+                    },
+                    "salary": {
+                        "type": "Integer"
+                    }
+                },
+                "references": {
+                    "computer": {
+                        "referencedType": "Computer" 
+                    }
+                }
+            },
+            "Computer": {
+                "attributes": {
+                    "cpu": {
+                        "type": "String"
+                    }
+                }
+            }
+        }
+    }
 }

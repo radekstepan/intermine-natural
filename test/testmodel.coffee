@@ -21,6 +21,6 @@ describe "testmodel.prolog", ->
         do (test, sentence, path) ->
             describe test + ', "' + sentence + '"', ->
                 it 'should output path, "' + path + '"', (done) ->
-                    prolog.show_path sentence, (output) ->
+                    prolog.showPath sentence, (output) ->
                         [output].should.eql [path]
                         done()

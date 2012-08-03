@@ -11,7 +11,8 @@
         "mocha": "latest",
         "flatiron": "git://github.com/flatiron/flatiron.git#master",
         "union": "git://github.com/flatiron/union.git#master",
-        "connect": "1.9.2"
+        "connect": "1.9.2",
+        "request": "latest"
     },
     "scripts": {
         "test": "./node_modules/mocha/bin/mocha --compilers coffee:coffee-script --ui bdd --reporter spec"
