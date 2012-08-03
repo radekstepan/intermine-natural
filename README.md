@@ -16,6 +16,14 @@ Then, the node.js dependencies. Make sure to have [Node.js](https://github.com/j
 $ npm install -d
 ```
 
+## Run server:
+
+The [flatiron](http://flatironjs.org/) server is started on port `1115` as follows:
+
+```bash
+$ ./node_modules/.bin/coffee server.coffee
+```
+
 ## Test:
 
 [Mocha](http://visionmedia.github.com/mocha/) is used as a test runner and is configured through npm:
