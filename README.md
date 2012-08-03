@@ -12,7 +12,7 @@ First, SWI Prolog needs to be installed:
 $ sudo apt-get install swi-prolog
 ```
 
-Then, the node.js dependencies. Make sure to have [Node.js](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) installed, then get the package dependencies:
+Make sure to have [Node.js](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager) installed, then get the package dependencies:
 
 ```bash
 $ npm install -d
@@ -25,6 +25,8 @@ The [flatiron](http://flatironjs.org/) server is started on port `1115` as follo
 ```bash
 $ ./node_modules/.bin/coffee server.coffee
 ```
+
+Port number can be changed in `config.json`.
 
 ## Test:
 
@@ -39,6 +41,8 @@ Alternatively, one can play around with the Prolog interpreter directly:
 ```bash
 $ prolog -f ./prolog/resolve.pro -g "show_path([attr,of,company], []),halt"
 ```
+
+The model consulted is present in `./prolog/model.pro` and is being overwriten every time the service is started with rules being taken from the `config.json` file `model` directive.
 
 ## Architecture
 
