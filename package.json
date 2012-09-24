@@ -1,6 +1,6 @@
 {
     "name": "intermine-natural",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "private": true,
     "dependencies": {
         "coffee-script": "latest",
@@ -15,6 +15,7 @@
         "request": "latest"
     },
     "scripts": {
+        "start": "./node_modules/.bin/coffee server.coffee",
         "test": "./node_modules/mocha/bin/mocha --compilers coffee:coffee-script --ui bdd --reporter spec"
     }
 }

@@ -26,3 +26,10 @@ app.use flatiron.plugins.http,
 app.start config.port, (err) ->
     throw err if err
     app.log.info "Listening on port #{app.server.address().port}".green
+
+app.router.path "/api/suggest", ->
+    @get ->
+        prolog.suggest @req.query.q, (cb) =>
+            console.log cb
+
+            @res.end()

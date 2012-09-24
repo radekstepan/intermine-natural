@@ -23,7 +23,7 @@ $ npm install -d
 The [flatiron](http://flatironjs.org/) server is started on port `1115` as follows:
 
 ```bash
-$ ./node_modules/.bin/coffee server.coffee
+$ npm start
 ```
 
 Port number can be changed in `config.json`.

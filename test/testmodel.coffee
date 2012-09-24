@@ -14,6 +14,9 @@ q =
     'against a reference of a class of a direct parent class sentence':
         sentence: 'employee of department of company'
         path: 'q([company (Class), department (Class), employee (Reference)])'
+    'against an attribute of a class of an indirect parent class sentence':
+        sentence: 'cpu of computer of company'
+        path: 'q([company (Class), department (Class), employee (Class), computer (Class), cpu (Attribute)])'
 
 describe "testmodel.prolog", ->
     

@@ -64,7 +64,7 @@ toProlog = (sentence) ->
 # Cleanup Prolog output.
 fromProlog = (output) ->
     output
-    .replace(/\[\]\s*,\s*/, '')  # strip empty lists
+    .replace(/\[\]\s*,\s*/g, '')  # strip empty lists
     .replace(/^\s+|\s+$/g, '')   # trim whitespace
     .replace(/\n|\nq/g, ' | ')   # split into different matches
     .replace(/\,\b(?! )/g, ', ') # follow comma with a space if not already

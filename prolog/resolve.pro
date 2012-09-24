@@ -3,7 +3,7 @@
 % field of class
 q(q(L)) --> field_of_class(_T,L).
 % field of class of class
-q(q(L)) --> field_of_class(T1,L1), [of], c(T2,C2), {is_child(T1, T2, L2)}, {add(L2,L1,L3)}, {add(C2,L3,L)}.
+q(q(L)) --> field_of_class(T1,L1), [of], c(T2,C2), {is_child(T1, T2, L2)}, {append(L2,L1,L3)}, {add(C2,L3,L)}.
 
 % 'simple' query
 field_of_class(T,L1) --> f(T,F), {add(F,[],L0)}, [of], c(T,C), {add(C,L0,L1)}.
@@ -49,7 +49,10 @@ is_child(T1, T2, L) :-
 
 % add element to list
 add(E, L, [E|L]).
-prepend(E, L, [L|E]).
+% empty target list condition
+prepend(E, [], [E]).
+% prepend to end
+prepend(E, [H|L], [H|L1]) :- prepend(E, L, L1).
 
 % show tree if Q is valid
 show_path(Q) :- q(Tree, Q, []), write(Tree), write('\n').
