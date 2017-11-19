@@ -30,7 +30,7 @@ Port number can be changed in `config.json`.
 
 ## Test:
 
-[Mocha](http://visionmedia.github.com/mocha/) is used as a test runner and is configured through npm:
+[Mocha](http://mochajs.org/) is used as a test runner and is configured through npm:
 
 ```bash
 $ npm test
